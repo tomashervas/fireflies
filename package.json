@@ -1,0 +1,16 @@
+{
+  "name": "flowfileds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@chriscourses/perlin-noise": "^1.0.5",
+    "vectory-lib": "^0.0.7"
+  }
+}
