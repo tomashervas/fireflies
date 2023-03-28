@@ -5,12 +5,56 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+body {
+    background-color: #444444;
+}
+
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 100px auto;
+    height: 80vh;
+
+}
+
+@media (max-width: 800px) {
+    .container {
+        margin: auto;
+    }
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
 .navbar {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     color: #fff;
+    opacity: 0;
+    z-index: 1;
+}
+.menu {
+    position: relative;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: none;
+    z-index: 1;
+}
+
+.visible {
+    display: block;
+}
+
+.menu p {
+    padding: 1rem;
+    font-size: 1.5rem;
 }
 
 .menu ul{
@@ -22,7 +66,63 @@
 }
 
 .menu li {
-    margin: 10px;
+    margin: 8px;
+}
+
+.rangeParticle {
+  padding: 1rem;
+}
+
+label {
+  font-size: 1rem;
+}
+input[type="range"] {
+  margin: 1rem;
+  width: calc(100% - 4rem);
+  height: 8px;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.opacity05 {
+    opacity: 0.5;
+}
+
+.opacity1 {
+    opacity: 1;
+}
+
+.opacity05-1 {
+    animation-name: opacidad;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.reopacity {
+    animation-name: reopacidad;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
 }
 
 h1 {
@@ -45,9 +145,36 @@ Button {
     
 }
 
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
+
+
+@keyframes opacidad {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes reopacidad {
+    0% {
+      opacity: 0.5;
+    }
+    25% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  
