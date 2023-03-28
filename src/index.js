@@ -53,10 +53,10 @@ const rangeColors = (range, luminosity)=>{
 let particles
 let field
 //entre 300 y 1000
-let particlesFactor = 1000
+let particlesFactor = 510
 //let increment = 0.01
 //let time = 0
-let scale = 10
+let scale = 15
 let newScale = scale
 scale > 20 ? newScale = 20 : newScale
 let columns = Math.round(canvas.width / newScale) + 1
@@ -66,6 +66,7 @@ function init() {
   particles = []
   field = []
   noiseSeed(Math.random()*100)
+  console.log('numero particulas ', (canvas.width * canvas.height) / particlesFactor)
 
   for (let i = 0; i < (canvas.width * canvas.height) / particlesFactor; i++) {
     // init field
@@ -165,11 +166,37 @@ canvas.addEventListener("click", (event) => {
   }
 })
 
-const rangeSlider = document.getElementById('rangeParticleSlider')
+const rangeLum = document.getElementById('rangeParticleSlider')
+const labelLuminosity = document.getElementById('labelLuminosidad')
 
-rangeSlider.addEventListener('change', () => {
-  rangeParticleColor = rangeSlider.value;
+const rangeNum = document.getElementById('rangeNumParticles')
+const labelNumero = document.getElementById('labelNumero')
+labelNumero.innerHTML = Math.round((canvas.width * canvas.height) / particlesFactor)
+
+const rangeScale = document.getElementById('rangeScale')
+const labelScale = document.getElementById('labelScale')
+
+rangeLum.addEventListener('change', () => {
+  rangeParticleColor = rangeLum.value;
+  labelLuminosity.innerHTML = rangeParticleColor
   setColors();
   init()
   console.log('El valor ha cambiado a:', rangeParticleColor)
+})
+
+rangeNum.addEventListener('change', () => {
+  particlesFactor = rangeNum.value == 1 ? 900 : 900 - (rangeNum.value * 130);
+  labelNumero.innerHTML = Math.round((canvas.width * canvas.height) / particlesFactor)
+  console.log('El factor ha cambiado a:', particlesFactor)
+  init()
+})
+
+rangeScale.addEventListener('change', () => {
+  scale = (rangeScale.value * 5) + 5
+  newScale = scale;
+  columns = Math.round(canvas.width / newScale) + 1
+  rows = Math.round(canvas.height / newScale) + 1
+  labelScale.innerHTML = scale
+  init()
+  console.log('El factor de escala ha cambiado a:', scale)
 })
