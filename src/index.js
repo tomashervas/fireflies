@@ -6,10 +6,10 @@ import Particle from './particle.js';
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
-if(window.innerWidth > 800) {
+if(window.innerWidth > 1024) {
   console.log('ancho: ' + window.innerWidth, 'y alto: ' + window.innerHeight)
-  canvas.width = 800
-  canvas.height = 600
+  canvas.width = 1024
+  canvas.height = 768
 } else {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
@@ -119,10 +119,7 @@ setColors()
 init()
 animate()
 
-
-const buttonList = document.getElementById("button-list");
-buttonList.addEventListener("click", (event) => {
-  // Verificar si el elemento clickeado es un botón
+const setColorButton = (event) => {
   if (event.target.nodeName === "BUTTON") {
     // Obtener el valor del botón clickeado
     const value = event.target.value;
@@ -130,22 +127,36 @@ buttonList.addEventListener("click", (event) => {
     setColors();
     init();
     console.log(value)
-    
   }
-});
+}
 
-
-// Obtener la lista y los botones
-const buttonListInitial = document.getElementById("button-list");
-const buttons = buttonListInitial.querySelectorAll("button");
-const navbar = document.querySelector(".navbar");
-const menu = document.querySelector(".menu");
+const buttonList = document.getElementById("button-list");
+buttonList.addEventListener("click", setColorButton);
 
 // Cambiar el color de fondo de cada botón
-buttons.forEach((button) => {
+buttonList.querySelectorAll("button").forEach((button) => {
   if(button.value == '#facc15' || button.value == '#84cc16') button.style.color = '#0f172a'
   button.style.backgroundColor = button.value;
 });
+const listParticleColor = document.getElementById("listParticleColor");
+
+listParticleColor.querySelectorAll("button").forEach((button) => {
+  button.style.backgroundColor = button.value;
+})
+
+listParticleColor.addEventListener("click", (event)=>{
+  if (event.target.nodeName === "BUTTON") {
+    particleColor = event.target.value;
+    init();
+    console.log(particleColor)
+  }
+})
+
+
+
+const navbar = document.querySelector(".navbar");
+const menu = document.querySelector(".menu");
+
 
 const menuBtn = document.getElementById("menuBtn");
 menuBtn.addEventListener("click", () => {

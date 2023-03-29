@@ -11,9 +11,10 @@ body {
 
 .container {
     position: relative;
-    max-width: 800px;
+    max-width: 1024px;
     margin: 100px auto;
-    height: 80vh;
+    /* height: 80vh; */
+    /* overflow: hidden; */
 
 }
 
@@ -45,6 +46,8 @@ canvas {
     color: #fff;
     background-color: rgba(10, 10, 10, 0.4);
     display: none;
+    max-height: 70vh;
+    overflow: auto;
     z-index: 1;
 }
 
@@ -65,7 +68,7 @@ canvas {
     flex-wrap: wrap;
 }
 
-.menu li {
+#button-list li {
     margin: 8px;
 }
 
@@ -129,7 +132,7 @@ h1 {
     font-size: 2rem;
 }
 
-Button {
+button {
     padding: 8px 16px;
     border: none;
     border-radius: 12px;
@@ -139,11 +142,39 @@ Button {
     color: #fff;
 }
 
-.menuButton {
-    background-color: rgba(255, 255, 255, 0.1);
-    font-size: 1.5rem;
-    
+.colorParticluas {
+  /* display: flex;
+  justify-content: center; */
+  text-align: center;
 }
+
+
+
+.colorParticluas button {
+  /* display: block; */
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 1rem;
+  
+}
+
+.colorParticluas .colorParticleCont{
+  /* color: aquamarine; */
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: solid 1px gray;
+  background-color: aquamarine;
+  margin: 8px 8px;
+  padding: 0;
+}
+
+
+.menuButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 1.5rem;
+  
+}
+
 
 
 
