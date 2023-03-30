@@ -3,35 +3,48 @@ import Vector from '../node_modules/vectory-lib/src/vector.js';
 import { hexToHsl } from './helpers.js';
 import Particle from './particle.js';
 
+//Definicion del tamaño del canvas
+const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
+
+const ancho = screen.width;
+const altura = screen.height;
+
+console.log(`Ancho de pantalla: ${ancho}`);
+console.log(`Altura de pantalla: ${altura}`);
 
 if(window.innerWidth > 1024) {
   console.log('ancho: ' + window.innerWidth, 'y alto: ' + window.innerHeight)
   canvas.width = 1024
   canvas.height = 768
+} else if (esMovil) {
+  canvas.width = ancho
+  canvas.height = altura
 } else {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
+  canvas.width = innerWidth
+  canvas.height = innerHeight
 }
 
 
 //const backColor = '#134E4A'
-let bColor = '#0f172a'
-let backColor;
+let backColor = '#0f172a';
 let particleColor;
+let particleColorHEX;
 let rangeParticleColor = 8;
 let firstTime = true;
-console.log(hexToHsl(bColor))
+let radiusParticle = 1;
 
-const setColors = () => {
-  const {strinngHSL,h,s,l} = hexToHsl(bColor)
-  console.log(hexToHsl(bColor))
-  const factor = rangeColors(rangeParticleColor, l)
-  console.log(factor)
+const setPartLumColor = (color) => {
+    const {h,s,l} = hexToHsl(color)
 
-  backColor = strinngHSL
-  particleColor = `hsl(${h},${s}%,${l+factor}%)`
+    console.log(hexToHsl(color))
+    const factor = rangeColors(rangeParticleColor, l)
+    console.log(factor)
+    particleColorHEX = color
+    particleColor = `hsl(${h},${s}%,${l+factor}%)`
+
 }
 
 const rangeColors = (range, luminosity)=>{
@@ -86,7 +99,7 @@ function init() {
       new Particle({
         x: canvas.width * Math.random(),
         y: canvas.height * Math.random(),
-        radius: 1.5,
+        radius: radiusParticle,
         color: 'black',
         velocity: {
           x: Math.random(),
@@ -115,38 +128,46 @@ function animate() {
   })
 }
 
-setColors()
+setPartLumColor(backColor)
 init()
 animate()
 
-const setColorButton = (event) => {
+const setBackColor = (event) => {
   if (event.target.nodeName === "BUTTON") {
     // Obtener el valor del botón clickeado
     const value = event.target.value;
-    bColor = value;
-    setColors();
+    backColor = value;
+    setPartLumColor(value)
     init();
     console.log(value)
   }
 }
 
 const buttonList = document.getElementById("button-list");
-buttonList.addEventListener("click", setColorButton);
+buttonList.addEventListener("click", setBackColor);
 
-// Cambiar el color de fondo de cada botón
+// Cambiar el color de fondo de cada boton de cambio de fondo al incio
 buttonList.querySelectorAll("button").forEach((button) => {
   if(button.value == '#facc15' || button.value == '#84cc16') button.style.color = '#0f172a'
   button.style.backgroundColor = button.value;
 });
+
+
+
 const listParticleColor = document.getElementById("listParticleColor");
 
+//Color de fondo de los botones color particulas al inicio
 listParticleColor.querySelectorAll("button").forEach((button) => {
   button.style.backgroundColor = button.value;
 })
 
+//Color de las particulas
 listParticleColor.addEventListener("click", (event)=>{
   if (event.target.nodeName === "BUTTON") {
     particleColor = event.target.value;
+    particleColorHEX = event.target.value;
+    rangeLum.value = 5;
+    labelLuminosity.innerHTML = '5';
     init();
     console.log(particleColor)
   }
@@ -159,9 +180,30 @@ const menu = document.querySelector(".menu");
 
 
 const menuBtn = document.getElementById("menuBtn");
+const downBtn = document.getElementById("downBtn");
+
 menuBtn.addEventListener("click", () => {
   menu.classList.toggle("visible");
   navbar.classList.toggle("opacity1");
+  downBtn.classList.toggle("secondary");
+  refreshBtn.classList.toggle("secondary");
+
+})
+
+const refreshBtn = document.getElementById("refreshBtn");
+refreshBtn.addEventListener("click", () => {
+  init()
+})
+
+downBtn.addEventListener("click", () => {
+  const image = canvas.toDataURL('image/jpg');
+
+  const link = document.createElement('a');
+  link.download = 'fireflies.jpg';
+  link.href = image;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 })
 
 canvas.addEventListener("click", (event) => {
@@ -174,8 +216,11 @@ canvas.addEventListener("click", (event) => {
   if( menu.classList.contains('visible')) {
     menu.classList.toggle("visible");
     navbar.classList.toggle("opacity1");
+    downBtn.classList.toggle("secondary");
+    refreshBtn.classList.toggle("secondary");
   }
 })
+
 
 const rangeLum = document.getElementById('rangeParticleSlider')
 const labelLuminosity = document.getElementById('labelLuminosidad')
@@ -187,10 +232,14 @@ labelNumero.innerHTML = Math.round((canvas.width * canvas.height) / particlesFac
 const rangeScale = document.getElementById('rangeScale')
 const labelScale = document.getElementById('labelScale')
 
+const rangeRadius = document.getElementById('rangeRadius')
+const labelRadius = document.getElementById('labelRadius')
+
+//Inputs range luminosidad, numero de particulas y escala
 rangeLum.addEventListener('change', () => {
   rangeParticleColor = rangeLum.value;
   labelLuminosity.innerHTML = rangeParticleColor
-  setColors();
+  setPartLumColor(particleColorHEX);
   init()
   console.log('El valor ha cambiado a:', rangeParticleColor)
 })
@@ -211,3 +260,29 @@ rangeScale.addEventListener('change', () => {
   init()
   console.log('El factor de escala ha cambiado a:', scale)
 })
+
+rangeRadius.addEventListener('change', () => {
+  radiusParticle = rangeRadius.value / 2;
+  labelRadius.innerHTML = rangeRadius.value + 'px'
+  init()
+  console.log('El radio ha cambiado a:', radiusParticle)
+})
+
+const container = document.getElementById('container');
+// const labelScreen = document.createElement('p');
+// labelScreen.textContent = `Ancho de pantalla: ${ancho} alto de ${altura} innerheight ${window.innerHeight} innerwidth ${window.innerWidth}`;
+// labelScreen.style.color = 'white';
+// labelScreen.style.fontSize = '20px';
+// labelScreen.style.position = 'relative';
+// container.appendChild(labelScreen);
+// console.log(navigator.userAgent)
+
+/* 
+if (esMovil) {
+  console.log('El dispositivo \n es un móvil');
+  labelScreen.textContent += ' es un movil'
+} else {
+  console.log('El dispositivo \n no es un móvil');
+  labelScreen.textContent += ' no es un movil'
+}
+ */
