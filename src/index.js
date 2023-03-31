@@ -5,6 +5,7 @@ import Particle from './particle.js';
 
 //Definicion del tamaño del canvas
 const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+const container = document.getElementById('container');
 
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
@@ -35,6 +36,7 @@ let particleColorHEX;
 let rangeParticleColor = 8;
 let firstTime = true;
 let radiusParticle = 1;
+let opacityFactor = 0.001;
 
 const setPartLumColor = (color) => {
     const {h,s,l} = hexToHsl(color)
@@ -105,7 +107,7 @@ function init() {
           x: Math.random(),
           y: Math.random()
         }
-      }, c, field, particleColor, scale, columns, rows, canvas, particles)
+      }, c, field, particleColor, scale, columns, rows, canvas, particles, opacityFactor)
     )
   }
 
@@ -196,15 +198,35 @@ refreshBtn.addEventListener("click", () => {
 })
 
 downBtn.addEventListener("click", () => {
-  const image = canvas.toDataURL('image/jpg');
 
-  const link = document.createElement('a');
-  link.download = 'fireflies.jpg';
-  link.href = image;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
+    const fileName = 'fireflies.jpg';
+    const image = canvas.toDataURL('image/jpg', 1.0);
+    const link = document.createElement('a');
+    link.download = fileName;
+    link.href = image.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+    container.appendChild(link);
+    link.click();
+    showToast('Descargando imagen...', false);
+    document.body.removeChild(link);
+
+    link.addEventListener('error', () => {
+      showToast(`Ha ocurrido un error al descargar la imagen ${fileName}.`, true);
+    });
+
 })
+
+const showToast = (message, isError) => {
+  const toast = document.createElement('div');
+  toast.classList.add('toast');
+  if (isError) {
+    toast.classList.add('error');
+  }
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.remove();
+  }, 4000);
+}
 
 canvas.addEventListener("click", (event) => {
   if(navbar.classList.contains('opacity05') && !menu.classList.contains('visible')) {
@@ -234,6 +256,9 @@ const labelScale = document.getElementById('labelScale')
 
 const rangeRadius = document.getElementById('rangeRadius')
 const labelRadius = document.getElementById('labelRadius')
+
+const rangeOpacityFactor = document.getElementById('rangeOpacityFactor')
+const labelOpacityFactor = document.getElementById('labelOpacityFactor')
 
 //Inputs range luminosidad, numero de particulas y escala
 rangeLum.addEventListener('change', () => {
@@ -268,7 +293,32 @@ rangeRadius.addEventListener('change', () => {
   console.log('El radio ha cambiado a:', radiusParticle)
 })
 
-const container = document.getElementById('container');
+rangeOpacityFactor.addEventListener('change', () => {
+  //console.log(rangeOpacityFactor.value)
+
+  switch (rangeOpacityFactor.value) {
+    case '1':
+      opacityFactor = 0.0005;
+    break;
+    case '2':
+      opacityFactor = 0.001;
+    break;
+    case '3':
+      opacityFactor = 0.005;
+    break;
+    case '4':
+      opacityFactor = 0.01;
+    break;
+
+    default:
+      break;
+  }
+  //console.log(opacityFactor)
+  labelOpacityFactor.innerHTML = opacityFactor
+  init()
+  console.log('El factor de opacidad ha cambiado a:', opacityFactor)
+})
+
 // const labelScreen = document.createElement('p');
 // labelScreen.textContent = `Ancho de pantalla: ${ancho} alto de ${altura} innerheight ${window.innerHeight} innerwidth ${window.innerWidth}`;
 // labelScreen.style.color = 'white';

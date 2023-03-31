@@ -1,7 +1,7 @@
 import Vector from '../node_modules/vectory-lib/src/vector.js';
 
 export default class Particle {
-    constructor({ x, y, radius, color, velocity }, c, field, particleColor, scale, columns, rows, canvas, particles) {
+    constructor({ x, y, radius, color, velocity }, c, field, particleColor, scale, columns, rows, canvas, particles, opacityFactor) {
       this.position = new Vector(x, y)
       //this.prevPosition = new Vector(x, y)
       this.velocity = new Vector(velocity.x, velocity.y)
@@ -17,6 +17,7 @@ export default class Particle {
       this.rows = rows
       this.canvas = canvas
       this.particles = particles
+      this.opacityFactor = opacityFactor
     }
   
     draw() {
@@ -53,7 +54,7 @@ export default class Particle {
   
       this.velocity = this.velocity.add(this.acceleration)
       this.position = this.position.add(this.velocity)
-      this.opacity +=0.001
+      this.opacity += this.opacityFactor
   
       if (this.velocity.getLength() > 2) this.velocity.setLength(2)
       this.acceleration.setLength(0)
