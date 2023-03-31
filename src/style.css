@@ -125,13 +125,7 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
 }
 
-.opacity05 {
-    opacity: 0.5;
-}
 
-.opacity1 {
-    opacity: 1;
-}
 
 .opacity05-1 {
     animation-name: opacidad;
@@ -232,6 +226,54 @@ button {
 .error {
   background-color: rgba(255, 0, 0, 0.5);
   
+}
+
+.sobre {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 1rem auto;
+  display: block;
+}
+
+.desarrollador {
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  padding: 1em;
+  border-radius: 5px;
+  margin-bottom: 2rem;
+  /* max-height: 0; */
+  max-height: 0;
+  overflow: hidden;
+}
+
+.desarrollador img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  object-position: 3px -5px;
+  border-radius: 50%;
+  margin: 1em;
+}
+
+.desarrollador h1 {
+  font-size: 1.25rem;
+  padding: 0.5em;
+}
+
+.desarrollador p {
+  padding: 0.25em;
+}
+
+.height {
+  max-height: none;
+}
+
+.opacity05 {
+  opacity: 0.5;
+}
+
+.opacity1 {
+  opacity: 1;
 }
 
 

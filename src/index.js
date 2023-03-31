@@ -319,6 +319,14 @@ rangeOpacityFactor.addEventListener('change', () => {
   console.log('El factor de opacidad ha cambiado a:', opacityFactor)
 })
 
+const sobre = document.getElementById('sobre');
+const desarrollador = document.getElementById('desarrollador');
+
+sobre.addEventListener('click', () => {
+  desarrollador.classList.toggle("opacity1");  
+  desarrollador.classList.toggle("height");  
+})
+
 // const labelScreen = document.createElement('p');
 // labelScreen.textContent = `Ancho de pantalla: ${ancho} alto de ${altura} innerheight ${window.innerHeight} innerwidth ${window.innerWidth}`;
 // labelScreen.style.color = 'white';
