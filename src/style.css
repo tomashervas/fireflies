@@ -198,7 +198,8 @@ button {
 }
 
 .icon {
-  width: 1rem;
+  /* width: 1rem; */
+  display: inline-block;
   /* height: 1.5rem; */
 }
 .icon path {
@@ -232,6 +233,8 @@ button {
   background-color: rgba(0, 0, 0, 0.5);
   margin: 1rem auto;
   display: block;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
 }
 
 .desarrollador {
@@ -244,6 +247,7 @@ button {
   /* max-height: 0; */
   max-height: 0;
   overflow: hidden;
+  z-index: 1;
 }
 
 .desarrollador img {
@@ -264,8 +268,29 @@ button {
   padding: 0.25em;
 }
 
+.desarrollador a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.desarrollador .references {
+  font-size: 0.85rem;
+  margin-top: 3rem;
+  line-height: 1.5rem;
+}
+
+.linkButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+
+}
+
 .height {
   max-height: none;
+  pointer-events: all;
 }
 
 .opacity05 {
