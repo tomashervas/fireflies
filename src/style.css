@@ -98,7 +98,7 @@ label {
 }
 input[type="range"] {
   margin: 1rem;
-  width: calc(100% - 4rem);
+  width: 70%;
   height: 8px;
   border: none;
   background: rgba(255, 255, 255, 0.3);

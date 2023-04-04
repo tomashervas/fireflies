@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Fireflies</title> 
+    <meta name="description" content="Generador de fondos abstractos"> 
+    <link rel="manifest" href="/manifest.webmanifest"> 
+	<link rel="icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">  
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">  
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">  
+    <link rel="mask-icon" href="/masked-icon.png" color="#FFFFFF">  
+    <meta name="theme-color" content="#0f172a">  
+    <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
     <div id="container" class="container">
@@ -13,13 +21,13 @@
         <div class="navbar">
             <h1>Fireflies</h1>
             <div class="navBtns">
-                <button class="navButton secondary" id="downBtn">
+                <button class="navButton secondary" id="downBtn" aria-label="download backgroun button">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></svg>
                 </button>
-                <button class="navButton secondary" id="refreshBtn">
+                <button class="navButton secondary" id="refreshBtn" aria-label="refresh background button">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M272 416c17.7 0 32-14.3 32-32s-14.3-32-32-32H160c-17.7 0-32-14.3-32-32V192h32c12.9 0 24.6-7.8 29.6-19.8s2.2-25.7-6.9-34.9l-64-64c-12.5-12.5-32.8-12.5-45.3 0l-64 64c-9.2 9.2-11.9 22.9-6.9 34.9s16.6 19.8 29.6 19.8l32 0 0 128c0 53 43 96 96 96H272zM304 96c-17.7 0-32 14.3-32 32s14.3 32 32 32l112 0c17.7 0 32 14.3 32 32l0 128H416c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l64 64c12.5 12.5 32.8 12.5 45.3 0l64-64c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8l-32 0V192c0-53-43-96-96-96L304 96z"/></svg>
                 </button>
-                <button class="navButton" id="menuBtn">
+                <button class="navButton" id="menuBtn" aria-label="menu button">
                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
                 </button>
             </div>
@@ -125,35 +133,35 @@
                     </ul>
                 </div>
                 <div class="rangeParticle">
-                    <label for="rangeParticleSlider">Luminosidad particulas: <span id="labelLuminosidad">8</span></label>
+                    <label for="rangeParticleSlider" aria-label="range luminosity particles">Luminosidad particulas: <span id="labelLuminosidad">8</span></label>
                     <input type="range" id="rangeParticleSlider" name="rangeParticleSlider" min="1" max="10" value="8">
                 </div>
                 <div class="rangeParticle">
-                    <label for="rangeNumParticles">Número de partículas: <span id="labelNumero"></span></label>
+                    <label for="rangeNumParticles" aria-label="range number of particles">Número de partículas: <span id="labelNumero"></span></label>
                     <input type="range" id="rangeNumParticles" name="rangeNumParticles" min="1" max="4" value="3">
                 </div>
                 <div class="rangeParticle">
-                    <label for="rangeScale">Factor de escala: <span id="labelScale">15</span></label>
+                    <label for="rangeScale" aria-label="range scale factor perlin noise">Factor de escala: <span id="labelScale">15</span></label>
                     <input type="range" id="rangeScale" name="rangeScale" min="1" max="7" value="2">
                 </div>
                 <div class="rangeParticle">
-                    <label for="rangeRadius">Tamaño de partícula: <span id="labelRadius">2px</span></label>
+                    <label for="rangeRadius" aria-label="range particle width">Tamaño de partícula: <span id="labelRadius">2px</span></label>
                     <input type="range" id="rangeRadius" name="rangeRadius" min="1" max="4" value="2">
                 </div>
                 <div class="rangeParticle">
-                    <label for="rangeOpacityFactor">Opacidad partículas: <span id="labelOpacityFactor">0.001</span></label>
+                    <label for="rangeOpacityFactor" aria-label="range opacity particles">Opacidad partículas: <span id="labelOpacityFactor">0.001</span></label>
                     <input type="range" id="rangeOpacityFactor" name="rangeOpacityFactor" min="1" max="4" value="2">
                 </div>
                 
-                <button class="sobre" id="sobre">sobre mi</button>
+                <button class="sobre" id="sobre" aria-label="about me">sobre mi</button>
                 <div class="desarrollador" id="desarrollador">
-                    <img src="./public/00102.png" alt="Foto de Jose Tomáss Hervás">
+                    <img src="/00102.png" alt="Foto de Jose Tomás Hervás">
                     <h1>Jose Tomás Hervás</h1>
                     <p>desarrollador web fullstack</p>
                     <p>josetomashervas.com</p>
 
                     <p class="references">basado en el código Flow fields de <br> Chris Courses
-                        <a class="linkButton icon" href="https://www.youtube.com/watch?v=na7LuZsW2UM&ab_channel=ChrisCourses"><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg></a></p>
+                        <a class="linkButton icon" aria-label="link to Flow Fields' ChrisCourses video in Youtube" href="https://www.youtube.com/watch?v=na7LuZsW2UM&ab_channel=ChrisCourses"><svg  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M352 0c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9L370.7 96 201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L416 141.3l41.4 41.4c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V32c0-17.7-14.3-32-32-32H352zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></svg></a></p>
                 </div>
             </div>
         </div>
@@ -162,6 +170,6 @@
         <canvas></canvas>
     </div>
 
-    <script src="index.js" type="module"></script>
+    <script src="/src/index.js" type="module"></script>
 </body>
 </html>

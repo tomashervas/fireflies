@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite dev --host",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +14,9 @@
   "dependencies": {
     "@chriscourses/perlin-noise": "^1.0.5",
     "vectory-lib": "^0.0.7"
+  },
+  "devDependencies": {
+    "vite": "^4.2.1",
+    "vite-plugin-pwa": "^0.14.7"
   }
 }

@@ -1,3 +1,5 @@
+import './style.css'
+
 import { noise, noiseSeed } from '../node_modules/@chriscourses/perlin-noise/index.js'
 import Vector from '../node_modules/vectory-lib/src/vector.js';
 import { hexToHsl } from './helpers.js';
@@ -13,8 +15,8 @@ const c = canvas.getContext('2d')
 const ancho = screen.width;
 const altura = screen.height;
 
-console.log(`Ancho de pantalla: ${ancho}`);
-console.log(`Altura de pantalla: ${altura}`);
+// console.log(`Ancho de pantalla: ${ancho}`);
+// console.log(`Altura de pantalla: ${altura}`);
 
 if(window.innerWidth > 1024) {
   console.log('ancho: ' + window.innerWidth, 'y alto: ' + window.innerHeight)
@@ -41,9 +43,9 @@ let opacityFactor = 0.001;
 const setPartLumColor = (color) => {
     const {h,s,l} = hexToHsl(color)
 
-    console.log(hexToHsl(color))
+    //console.log(hexToHsl(color))
     const factor = rangeColors(rangeParticleColor, l)
-    console.log(factor)
+    //console.log(factor)
     particleColorHEX = color
     particleColor = `hsl(${h},${s}%,${l+factor}%)`
 
@@ -81,7 +83,7 @@ function init() {
   particles = []
   field = []
   noiseSeed(Math.random()*100)
-  console.log('numero particulas ', (canvas.width * canvas.height) / particlesFactor)
+  //console.log('numero particulas ', (canvas.width * canvas.height) / particlesFactor)
 
   for (let i = 0; i < (canvas.width * canvas.height) / particlesFactor; i++) {
     // init field
@@ -141,7 +143,7 @@ const setBackColor = (event) => {
     backColor = value;
     setPartLumColor(value)
     init();
-    console.log(value)
+    //console.log(value)
   }
 }
 
@@ -171,7 +173,7 @@ listParticleColor.addEventListener("click", (event)=>{
     rangeLum.value = 5;
     labelLuminosity.innerHTML = '5';
     init();
-    console.log(particleColor)
+    //console.log(particleColor)
   }
 })
 
@@ -266,13 +268,13 @@ rangeLum.addEventListener('change', () => {
   labelLuminosity.innerHTML = rangeParticleColor
   setPartLumColor(particleColorHEX);
   init()
-  console.log('El valor ha cambiado a:', rangeParticleColor)
+  //console.log('El valor ha cambiado a:', rangeParticleColor)
 })
 
 rangeNum.addEventListener('change', () => {
   particlesFactor = rangeNum.value == 1 ? 900 : 900 - (rangeNum.value * 130);
   labelNumero.innerHTML = Math.round((canvas.width * canvas.height) / particlesFactor)
-  console.log('El factor ha cambiado a:', particlesFactor)
+  //console.log('El factor ha cambiado a:', particlesFactor)
   init()
 })
 
@@ -283,14 +285,14 @@ rangeScale.addEventListener('change', () => {
   rows = Math.round(canvas.height / newScale) + 1
   labelScale.innerHTML = scale
   init()
-  console.log('El factor de escala ha cambiado a:', scale)
+  //console.log('El factor de escala ha cambiado a:', scale)
 })
 
 rangeRadius.addEventListener('change', () => {
   radiusParticle = rangeRadius.value / 2;
   labelRadius.innerHTML = rangeRadius.value + 'px'
   init()
-  console.log('El radio ha cambiado a:', radiusParticle)
+  //console.log('El radio ha cambiado a:', radiusParticle)
 })
 
 rangeOpacityFactor.addEventListener('change', () => {
@@ -316,7 +318,7 @@ rangeOpacityFactor.addEventListener('change', () => {
   //console.log(opacityFactor)
   labelOpacityFactor.innerHTML = opacityFactor
   init()
-  console.log('El factor de opacidad ha cambiado a:', opacityFactor)
+  //console.log('El factor de opacidad ha cambiado a:', opacityFactor)
 })
 
 const sobre = document.getElementById('sobre');
